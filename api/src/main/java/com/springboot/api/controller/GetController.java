@@ -3,6 +3,8 @@ package com.springboot.api.controller;
 import com.springboot.api.dto.MemberDto;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -11,13 +13,17 @@ import java.util.Map;
 @RequestMapping("/api/v1/get-api")
 public class GetController {
 
+    private final Logger LOGGER = LoggerFactory.getLogger(GetController.class);
+
     @RequestMapping(value = "/hello", method = RequestMethod.GET)
     public String getHello() {
+        LOGGER.info("getHello 메서드가 호출되었습니다.");
         return "Hello World";
     }
 
     @GetMapping(value = "/name")
     public String getName() {
+        LOGGER.info("getName 메서드가 호출되었습니다.");
         return "Feature";
     }
 
