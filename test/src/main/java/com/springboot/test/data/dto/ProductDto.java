@@ -1,18 +1,15 @@
 package com.springboot.test.data.dto;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
-@Setter
-@Getter
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
+@Builder
 public class ProductDto {
     private String name;
     private int price;
     private int stock;
 
-    public ProductDto(String name, int price, int stock) {
-        this.name = name;
-        this.price = price;
-        this.stock = stock;
-    }
 }
