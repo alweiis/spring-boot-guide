@@ -9,6 +9,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import static org.springframework.data.domain.Sort.Order.asc;
 import static org.springframework.data.domain.Sort.Order.desc;
@@ -62,5 +63,18 @@ class ProductRepositoryTest {
                 asc("price"),
                 desc("stock")
         );
+    }
+
+    @Test
+    public void queryAnnotationTest() {
+        System.out.println(productRepository.findByName("펜"));
+        System.out.println(productRepository.findByNameParam("펜"));
+
+        List<Object[]> objects = productRepository.findByNameParam2("펜");
+        for (Object[] object : objects) {
+            System.out.println(object[0]);
+            System.out.println(object[1]);
+            System.out.println(object[2]);
+        }
     }
 }
