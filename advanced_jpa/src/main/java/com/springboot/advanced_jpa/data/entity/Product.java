@@ -29,7 +29,7 @@ public class Product {
     @Column(nullable = false)
     private Integer stock;
 
-    private LocalDateTime createAt;
+    private LocalDateTime createdAt;
 
-    private LocalDateTime updateAt;
+    private LocalDateTime updatedAt;
 }
