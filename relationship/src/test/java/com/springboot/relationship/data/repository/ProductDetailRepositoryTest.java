@@ -1,7 +1,9 @@
-package com.springboot.relationship.data.repository.support;
+package com.springboot.relationship.data.repository;
 
 import com.springboot.relationship.data.entity.Product;
 import com.springboot.relationship.data.entity.ProductDetail;
+import com.springboot.relationship.data.repository.support.ProductDetailRepository;
+import com.springboot.relationship.data.repository.support.ProductRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
