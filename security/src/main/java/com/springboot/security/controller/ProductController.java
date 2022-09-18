@@ -4,6 +4,9 @@ import com.springboot.security.data.dto.ChangeProductNameDto;
 import com.springboot.security.data.dto.ProductDto;
 import com.springboot.security.data.dto.ProductResponseDto;
 import com.springboot.security.service.ProductService;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/product")
+@Slf4j
 public class ProductController {
     private final ProductService productService;
 
@@ -25,9 +29,19 @@ public class ProductController {
         return ResponseEntity.status(HttpStatus.OK).body(productResponseDto);
     }
 
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "X-AUTH-TOKEN",
+            value = "로그인 성공 후 발급 받은 access_token",
+            required = true,
+            dataType = "String",
+            paramType = "header")
+    })
     @PostMapping
     public ResponseEntity<ProductResponseDto> createProduct(@RequestBody ProductDto productDto) {
+        long currentTime = System.currentTimeMillis();
         ProductResponseDto productResponseDto = productService.saveProduct(productDto);
+
+        log.info("[createProduct] Response Time : {}ms", System.currentTimeMillis() - currentTime);
         return ResponseEntity.status(HttpStatus.OK).body(productResponseDto);
     }
 
